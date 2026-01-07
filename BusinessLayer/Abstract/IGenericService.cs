@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace BusinessLayer.Abstract
@@ -11,6 +12,7 @@ namespace BusinessLayer.Abstract
         void TUpdate(T t);
         List<T> TGetList();
         T TGetById(int id);
+       // List<T> TGetByFilter(Expression<Func<T, bool>> filter);
     }
 
 }
