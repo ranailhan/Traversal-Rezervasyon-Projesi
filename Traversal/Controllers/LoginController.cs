@@ -34,7 +34,7 @@ namespace Traversal.Controllers
                 Surname = p.Surname,
                 Email = p.Mail,
                 UserName = p.Username,
-                ImageURL= "assets/images/defaultProfilePicture.jpg"
+                ImageURL= "/UserImages/defaultProfilePicture.jpg"
             };
             if (p.Password == p.ConfirmPassword)
             {
