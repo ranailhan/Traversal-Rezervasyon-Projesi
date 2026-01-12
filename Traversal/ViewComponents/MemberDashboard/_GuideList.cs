@@ -8,8 +8,9 @@ namespace Traversal.ViewComponents.MemberDashboard
     {
         GuideManager guideManager = new GuideManager(new EfGuideDal());
         public IViewComponentResult Invoke()
-        {  
-            return View(); 
+        {
+            var values = guideManager.TGetList();
+            return View(values); 
         }
     }
 }
