@@ -1,5 +1,6 @@
 ﻿@{
-	Layout = null;
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <!DOCTYPE html>
 <html lang="en"
@@ -13,7 +14,7 @@
 	<meta name="viewport"
 		  content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-	<title>Vertical Layouts - Forms | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+	<title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
 	<meta name="description" content="" />
 
@@ -37,6 +38,8 @@
 	<!-- Vendors CSS -->
 	<link rel="stylesheet" href="~/sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
 
+	<link rel="stylesheet" href="~/sneat-1.0.0/assets/vendor/libs/apex-charts/apex-charts.css" />
+
 	<!-- Page CSS -->
 	<!-- Helpers -->
 	<script src="~/sneat-1.0.0/assets/vendor/js/helpers.js"></script>
@@ -46,33 +49,38 @@
 	<script src="~/sneat-1.0.0/assets/js/config.js"></script>
 </head>
 <body>
-	<div class="layout-wrapper layout-content-navbar">
-		<div class="layout-container">
+	<div class="row">
+		@await Component.InvokeAsync("_DashboardBanner")
 
-			<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
-				@await Html.PartialAsync("/Views/Admin/PartialAppBrandDemo.cshtml")
-				<div class="menu-inner-shadow"></div>
-				@await Html.PartialAsync("/Views/Admin/PartialMenuInner.cshtml")
-			</aside>
-			<div class="layout-page">
-				@await Html.PartialAsync("/Views/Admin/PartialNavbar.cshtml")
-				<div class="content-wrapper">
-					<div class="container-xxl flex-grow-1 container-p-y">
-						@RenderBody()
-					</div>
-					@await Html.PartialAsync("/Views/Admin/PartialFooter.cshtml")
-					<div class="content-backdrop fade"></div>
-				</div>
-			</div>
-		</div>
-		<div class="layout-overlay layout-menu-toggle"></div>
+		@await Component.InvokeAsync("_Cards1Statistic")
+
+		@await Component.InvokeAsync("_TotalRevenue")
+
+		@await Component.InvokeAsync("_Cards2Statistics")
 	</div>
+	<div class="row">
+
+		@await Component.InvokeAsync("_DestinationStatistics")
+
+		@await Component.InvokeAsync("_DestinationStatistics2")
+
+
+		@await Component.InvokeAsync("_PartialGuideList")
+
+	</div>
+
+	<div class="content-backdrop fade"></div>
+	<div class="layout-overlay layout-menu-toggle"></div>
 	<script src="~/sneat-1.0.0/assets/vendor/libs/jquery/jquery.js"></script>
 	<script src="~/sneat-1.0.0/assets/vendor/libs/popper/popper.js"></script>
 	<script src="~/sneat-1.0.0/assets/vendor/js/bootstrap.js"></script>
 	<script src="~/sneat-1.0.0/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 	<script src="~/sneat-1.0.0/assets/vendor/js/menu.js"></script>
+	<script src="~/sneat-1.0.0/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 	<script src="~/sneat-1.0.0/assets/js/main.js"></script>
+	<script src="~/sneat-1.0.0/assets/js/dashboards-analytics.js"></script>
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>
+
+
