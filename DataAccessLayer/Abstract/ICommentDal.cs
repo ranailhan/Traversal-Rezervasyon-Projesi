@@ -37,5 +37,6 @@ namespace DataAccessLayer.Abstract
         {
             throw new NotImplementedException();
         }
+        public List<Comment> GetListCommentWithDestination();
     }
 }
