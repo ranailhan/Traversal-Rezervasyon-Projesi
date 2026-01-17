@@ -6,6 +6,7 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Traversal.Models;
 
@@ -42,6 +43,7 @@ namespace Traversal
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404","?code={0}");
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
@@ -63,7 +65,7 @@ namespace Traversal
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
+                pattern: "{controller=Login}/{action=SignIn}/{id?}")
                 .WithStaticAssets();
 
             app.Run();
