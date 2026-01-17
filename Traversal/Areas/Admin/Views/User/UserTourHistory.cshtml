@@ -1,0 +1,29 @@
+﻿@model List<Reservation>
+@{
+	ViewData["Title"] = "UserTourHistory";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	int sayac = 0;
+}
+
+<h1>Kullanıcının Geçmiş Rezervasyonları</h1>
+
+<table class="table table-bordered">
+	<tr>
+		<th>#</th>
+		<th>Misafir Ad Soyad</th>
+		<th>Rota</th>
+		<th>Tarih</th>
+		<th>Detaylar</th>
+	</tr>
+	@foreach (var reservation in Model)
+	{
+		<tr>
+			<td>@(sayac += 1)</td>
+@* 			<td>@reservation.AppUser.Name @reservation.AppUser.Surname</td>
+ *@			<td>@reservation.Destination.City</td>
+			<td>@reservation.PersonCount</td>
+			<td>@(((DateTime)reservation.ReservationDate).ToString("dd-MMM-yyyy"))</td>
+			<td><a href="#" class="btn btn-outline-primary">Detaylar</a></td>
+		</tr>
+	}
+</table>
