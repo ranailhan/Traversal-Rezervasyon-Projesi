@@ -8,6 +8,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using OfficeOpenXml;
 using Traversal.Models;
 
 namespace Traversal
@@ -17,7 +18,7 @@ namespace Traversal
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            ExcelPackage.License.SetNonCommercialPersonal("cigkofte");
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<Context>();

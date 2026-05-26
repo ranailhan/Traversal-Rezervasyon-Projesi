@@ -1,6 +1,11 @@
 ﻿using BusinessLayer.Abstract;
+using BusinessLayer.ValidationRules;
+using DocumentFormat.OpenXml.Office.CustomUI;
+using DocumentFormat.OpenXml.Presentation;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using FluentValidation.Results;
+
 
 namespace Traversal.Areas.Admin.Controllers
 {
@@ -25,10 +30,24 @@ namespace Traversal.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddGuide(Guide guide)
+        public IActionResult AddGuide(EntityLayer.Concrete.Guide guide)
         {
-            _guideService.TAdd(guide);
-            return RedirectToAction("Index");
+
+            GuideValidator validationRules = new GuideValidator();
+            ValidationResult result = validationRules.Validate(guide);
+            if (result.IsValid)
+            {
+                _guideService.TAdd(guide);
+                return RedirectToAction("Index");
+            }
+            else 
+            {
+                foreach(var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+                return View(guide);
+            }
         }
         [HttpGet]
         public IActionResult EditGuide(int id)
@@ -37,7 +56,7 @@ namespace Traversal.Areas.Admin.Controllers
             return View(values);
         }
         [HttpPost]
-        public IActionResult EditGuide(Guide guide)
+        public IActionResult EditGuide(EntityLayer.Concrete.Guide guide)
         {
             _guideService.TUpdate(guide);
             return RedirectToAction("Index");
