@@ -32,6 +32,13 @@ namespace Traversal
             builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();
 
             builder.Services.ContainerDependencies();
+            builder.Services.AddLogging(x =>
+            {
+                x.SetMinimumLevel(LogLevel.Debug);
+                x.AddDebug();
+            });
+            var path = Directory.GetCurrentDirectory();
+            builder.Logging.AddFile($"{path}/Logs/Log1.txt");
 
             var app = builder.Build();
 
@@ -43,7 +50,7 @@ namespace Traversal
                 app.UseHsts();
             }
 
-            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404","?code={0}");
+            app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404", "?code={0}");
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
