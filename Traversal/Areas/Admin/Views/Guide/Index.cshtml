@@ -28,11 +28,16 @@
 			<td>@guide.Name</td>
 			<td>@guide.Description</td>
 			<td>
-				@(guide.Status
-							? Html.Raw("<a href='#' class='btn btn-outline-warning'>Pasif Yap</a>")
-							: Html.Raw("<a href='#' class='btn btn-outline-info'>Aktif Yap</a>"))
+				@if (guide.Status)
+				{
+					<a href="/Admin/Guide/ChangeToFalse/@guide.GuideID" class="btn btn-outline-warning">Pasif Yap</a>
+				}
+				else
+				{
+					<a href="/Admin/Guide/ChangeToTrue/@guide.GuideID" class="btn btn-outline-info">Aktif Yap</a>
+				}
 		</td>
-		<td><a href="" class="btn btn-outline-success">Düzenle</a></td>
+		<td><a href="/Admin/Guide/EditGuide/" class="btn btn-outline-success">Düzenle</a></td>
 	</tr>
 		}
 </table>
